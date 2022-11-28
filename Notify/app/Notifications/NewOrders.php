@@ -10,6 +10,7 @@ use Illuminate\Notifications\Notification;
 class NewOrders extends Notification
 {
     use Queueable;
+// this is the order array
     private $order;
 
     /**
@@ -17,6 +18,8 @@ class NewOrders extends Notification
      *
      * @return void
      */
+
+    // Constructor to set the order
     public function __construct($order)
     {
         $this->order = $order;
@@ -39,6 +42,8 @@ class NewOrders extends Notification
      * @param  mixed  $notifiable
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
+
+    // This is the mail message that will be sent to the user
     public function toMail($notifiable)
     {
         return (new MailMessage)

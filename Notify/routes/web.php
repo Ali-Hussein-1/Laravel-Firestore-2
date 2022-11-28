@@ -17,4 +17,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Route to send notification
+
 Route::get('/send-notification', 'NotificationController@sendNotification')->name('send.notification');
