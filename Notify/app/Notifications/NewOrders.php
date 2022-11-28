@@ -10,15 +10,16 @@ use Illuminate\Notifications\Notification;
 class NewOrders extends Notification
 {
     use Queueable;
+    private $order;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($order)
     {
-        //
+        $this->order = $order;
     }
 
     /**
@@ -41,9 +42,9 @@ class NewOrders extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+                    ->greeting($this->order['greeting'])
+                    ->line($this->order['body'])
+                    ->line($this->order['lastline']);
     }
 
     /**
